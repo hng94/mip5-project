@@ -33,7 +33,7 @@ export const tools = {
     inlineToolbar: true,
   },
   embed: Embed,
-  table: Table,
+  // table: Table,
   warning: Warning,
   //   code: Code,
   linkTool: LinkTool,

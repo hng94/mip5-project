@@ -11,8 +11,8 @@ import TagList from "../components/TagList";
 export default function Home() {
   return (
     <>
-      <div className="grid grid-cols-3 space-x-6">
-        <div className="relative space-y-4 col-span-2">
+      <div className="grid grid-cols-4 space-x-6">
+        <div className="relative space-y-4 col-span-3">
           <FilterBar />
           <div className="grid grid-col sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card />

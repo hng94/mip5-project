@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Nav />
-      <div className="container mx-auto p-6 max-w-screen-xl ">
+      <div className="container mx-auto p-6 max-w-screen-lg ">
         <Component {...pageProps} />
       </div>
     </>

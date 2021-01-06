@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import Comments from "./Comments";
+import Comments from "./Comment/Comments";
 import Story from "./Story";
 import Timeline from "./Timeline";
 
@@ -13,7 +13,7 @@ export default function Tabs() {
       <div className="flex flex-wrap">
         <div className="w-full">
           <ul
-            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+            className="flex mb-0 list-none flex-wrap pb-4 flex-row"
             role="tablist"
           >
             {tabList.map((tab, index) => (
