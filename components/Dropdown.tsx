@@ -1,7 +1,8 @@
 import { Icon, IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
-import useOnClickOutside from "../Hooks/useClickOutside";
+import useOnClickOutside from "../hooks/useClickOutside";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 type IDropdown = {
   items: string[];
@@ -38,28 +39,28 @@ export default function Dropdown() {
   useOnClickOutside(ref, () => setDropdown(false));
   return (
     <>
-      <div className="relative inline-block text-left">
+      <div className="relative inline-block text-left w-full">
         <div>
           <button
             type="button"
-            className="inline-flex justify-between min-w-full w-48 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+            className="inline-flex w-full justify-between rounded-md text-sm border border-gray-300 px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
             onClick={toogleDropdown}
           >
             {selectedItem ? selectedItem : "Select options"}
-            <FontAwesomeIcon
-              className="ml-2"
-              icon={`angle-${dropdown ? "up" : "down"}` as IconProp}
-              size="lg"
-            />
+            {dropdown ? (
+              <FiChevronUp className="h-5" />
+            ) : (
+              <FiChevronDown className="h-5" />
+            )}
           </button>
         </div>
         <div
           id="dropdown"
           ref={ref}
-          className={`z-10 origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+          className={`z-50 origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
           transition ease-${dropdown ? "out" : "in"} 
           duration-${dropdown ? "100" : "75"} 
           transform opacity-${dropdown ? "100" : "0"}

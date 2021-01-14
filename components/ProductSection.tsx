@@ -23,7 +23,7 @@ export default function ProductSection() {
           </div>
           <div className="flex flex-row py-2">
             <img
-              src="../thumbnail.jpg"
+              src="../../thumbnail.jpg"
               className="h-10 w-10 rounded-full"
               alt=""
             />

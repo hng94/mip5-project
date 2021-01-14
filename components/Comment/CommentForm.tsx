@@ -4,7 +4,7 @@ import React from "react";
 export default function CommentForm() {
   return (
     <div className="flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-800 p-4 rounded-xl border w-full">
+      <div className="bg-white dark:bg-gray-800 glass dark:border-gray-800 p-4 rounded-xl border w-full">
         <div className="flex justify-between">
           <div className="flex items-center">
             <img

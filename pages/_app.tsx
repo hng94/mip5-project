@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import "../styles/editor-style.scss";
+import "../styles/custom-style.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";

@@ -7,7 +7,7 @@ export type IPerkCard = {
 
 export default function PerkCard({ perk }: IPerkCard) {
   return (
-    <div className="flex flex-col rounded-lg border border-gray-200 max-w-md transition duration-300 ease-in-out transform hover:shadow-lg cursor-pointer">
+    <div className="flex flex-col glass max-w-md">
       <div className="p-4 space-y-2">
         <p className="text-2xl capitalize">{perk}</p>
         <p className="text-gray-500 dark:text-gray-400 text-base">

@@ -1,0 +1,27 @@
+#editor-js {
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  .codex-editor__redactor {
+    @apply pb-6;
+  }
+}
+
+#quill-editor {
+  .ql-toolbar {
+    @apply rounded-t-md;
+  }
+  .ql-container {
+    @apply rounded-b-md;
+    @apply pb-20;
+  }
+}

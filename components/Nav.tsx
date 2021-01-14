@@ -2,8 +2,8 @@ import * as React from "react";
 
 export default function Nav() {
   return (
-    <nav className="bg-gray-800 sticky top-0 z-50">
-      <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
+    <nav className="bg-gray-800 sticky top-0 z-50 m-4 rounded-md shadow-lg">
+      <div className="mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button

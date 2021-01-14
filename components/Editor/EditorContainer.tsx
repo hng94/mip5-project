@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditorJS, { EditorConfig } from "@editorjs/editorjs";
-import { tools } from "./tools";
+import { tools } from "./editorTools";
 /**
  *
  * @param {EditorJS.Tool[]} toolsList
@@ -9,12 +9,12 @@ import { tools } from "./tools";
  */
 export const useEditor = (toolsList, { data, editorRef }, options) => {
   const [editorInstance, setEditor] = useState(null);
-  // const {
-  //   data: ignoreData,
-  //   tools: ignoreTools,
-  //   holder: ignoreHolder,
-  //   ...editorOptions
-  // } = options;
+  const {
+    data: ignoreData,
+    tools: ignoreTools,
+    holder: ignoreHolder,
+    ...editorOptions
+  } = options;
 
   // initialize
   useEffect(() => {
@@ -24,7 +24,8 @@ export const useEditor = (toolsList, { data, editorRef }, options) => {
        * Id of Element that should contain the Editor
        */
       holder: "editor-js",
-
+      placeholder: "Write your story here",
+      autofocus: true,
       /**
        * Available Tools list.
        * Pass Tool's class or Settings object for each Tool you want to use
@@ -39,8 +40,8 @@ export const useEditor = (toolsList, { data, editorRef }, options) => {
       initialBlock: "paragraph",
 
       // Override editor options
-      // ...editorOptions,
-      ...options,
+      ...editorOptions,
+      // ...options,
     });
 
     setEditor(editor);
@@ -85,7 +86,10 @@ export const EditorContainer = ({
 
   return (
     <>
-      <div id="editor-js"></div>
+      <div
+        className="border border-gray-300 rounded-md w-100"
+        id="editor-js"
+      ></div>
     </>
   );
 };

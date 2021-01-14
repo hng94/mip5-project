@@ -7,7 +7,7 @@ export default function TagList() {
       {Tags.map((t) => (
         <div
           key={t}
-          className="rounded-md bg-gray-200 mt-2 mr-2 p-2 text-sm text-blue-500"
+          className="rounded-md bg-gray-200 m-2 p-2 text-sm text-blue-500"
         >
           {t}
         </div>

@@ -1,24 +1,24 @@
 import dynamic from "next/dynamic";
 import * as React from "react";
 import { ComponentType, FC, useState } from "react";
-import { IEditorProp } from "./Editor/editor";
-import {
-  useLoadData,
-  useSaveCallback,
-  useSetData,
-} from "./Editor/editor-hooks";
-import data from "./Editor/data.json";
+import { IEditorProp } from "./Editor/EditorContainer";
+import { useLoadData, useSaveCallback, useSetData } from "./Editor/editorHooks";
+import defaultData from "./Editor/data.json";
 
 const Editor = dynamic(
-  () => import("./Editor/editor").then((mod) => mod.EditorContainer),
+  () => import("./Editor/EditorContainer").then((mod) => mod.EditorContainer),
   { ssr: false }
 );
 
-export default function Story() {
+export default function Story(props) {
+  const { initData } = props;
   const [editor, setEditor] = useState(null);
   const onSave = useSaveCallback(editor);
+  const data = initData ? {} : defaultData;
   //   const [data, loading] = useLoadData();
-  useSetData(editor, data);
+  if (data == {}) {
+    useSetData(editor, data);
+  }
 
   const EditorProps: IEditorProp = {
     editorRef: setEditor,
