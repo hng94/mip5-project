@@ -12,7 +12,7 @@ export default function edit() {
       <div className="mt-5 md:mt-0">
         <form action="#" method="POST">
           <div className="shadow sm:rounded-md">
-            <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+            <div className="px-4 rounded-t-md py-5 bg-white space-y-6 sm:p-6">
               <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
                 Basic
               </p>
@@ -155,13 +155,42 @@ export default function edit() {
                   </div>
                 </div>
               </div>
-              <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
-                Story
-              </p>
-              <QuillEditor />
+              <div>
+                <p className="text-2xl text-red-400 mb-2 pb-2 border-b-2 border-red-400">
+                  Story
+                </p>
+                <QuillEditor />
+              </div>
+              <div>
+                <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
+                  Campaign
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="mt-2">
+                    <label>Start date</label>
+                    <input type="date" id="startDate" />
+                  </div>
+                  <div className="mt-2">
+                    <label>Duration (days)</label>
+                    <input
+                      type="number"
+                      min={1}
+                      max={365}
+                      defaultValue={1}
+                      step={1}
+                      id="duration"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button type="submit">Back</button>
+            <div className="px-4 rounded-b-md py-3 bg-gray-50 text-right sm:px-6">
+              <button
+                className="focus:outline-none bg-blue-500 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium"
+                type="submit"
+              >
+                Save & Lauch
+              </button>
             </div>
           </div>
         </form>

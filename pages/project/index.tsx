@@ -7,7 +7,7 @@ export default function ProjectList() {
       <div className="py-4 flex flex-row justify-between">
         <p className="text-3xl">Projects</p>
         <Link href="/project/new/edit">
-          <button className="bg-blue-500 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
+          <button className="focus:outline-none bg-blue-500 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
             New
           </button>
         </Link>
@@ -15,7 +15,7 @@ export default function ProjectList() {
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200 sm:rounded-lg">
+            <div className="overflow-hidden border border-gray-200 sm:rounded-lg shadow-sm">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
@@ -52,7 +52,7 @@ export default function ProjectList() {
                   <tr>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        <Link href="/project/1/view">
+                        <Link href="/project/1">
                           <a>
                             inCharge X - The 100W Swiss Army Knife of Cables
                           </a>

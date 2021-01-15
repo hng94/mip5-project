@@ -6,7 +6,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      outline: ["focus"]
+      // outline: ["focus"]
     },
   },
   plugins: [],

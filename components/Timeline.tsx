@@ -2,7 +2,7 @@ export default function Timeline() {
   const events = ["Backlog", "Todo", "Doing", "Test", "Done"];
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-start">
         <ol className="p-4">
           {events.map((event, i) => (
             <li
