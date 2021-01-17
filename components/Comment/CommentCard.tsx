@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FiHeart } from "react-icons/fi";
 
 export default function CommentCard() {
   return (
@@ -31,11 +31,7 @@ export default function CommentCard() {
           <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1"></div>
           <div className="text-gray-500 dark:text-gray-400 flex mt-3">
             <div className="flex items-center mr-6">
-              <FontAwesomeIcon
-                icon={["far", "heart"]}
-                size="lg"
-                className="text-red-400"
-              />
+              <FiHeart className="text-red-400 inline-flex" />
               <span className="ml-3">615</span>
             </div>
           </div>

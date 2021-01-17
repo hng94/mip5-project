@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <>
       <div className="rounded shadow p-4 bg-white w-full lg:w-5/12 mx-auto">
-        <p className="text-3xl text-center font-semibold">Login</p>
+        <p className="text-3xl mb-6">Login</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label
@@ -23,13 +23,16 @@ const Login = () => {
               htmlFor="email"
             >
               E-mail
+              <input
+                type="email"
+                name="email"
+                className="form-input mt-1 block w-full rounded border-gray-300"
+                ref={register({ required: "Email is required" })}
+              />
             </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="email address"
-              ref={register}
-            />
+            <p className="text-sm text-red-500">
+              {errors.email && errors.email.message}
+            </p>
           </div>
           <div>
             <label
@@ -37,13 +40,17 @@ const Login = () => {
               htmlFor="password"
             >
               Password
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="form-input mt-1 block w-full rounded border-gray-300"
+                ref={register({ required: "Password is required" })}
+              />
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              ref={register}
-            />
+            <p className="text-sm text-red-500">
+              {errors.password && errors.password.message}
+            </p>
           </div>
           <button
             type="submit"
@@ -55,14 +62,14 @@ const Login = () => {
           </button>
         </form>
         <div className="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-          <a href="forgot-password" className="flex-2 underline">
-            Forgot password?
-          </a>
+          <Link href="/forgot-password">
+            <a className="flex-2 underline">Forgot password?</a>
+          </Link>
 
           <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
             or
           </p>
-          <Link href="/auth/register">
+          <Link href="/register">
             <a className="flex-2 underline">Create an Account</a>
           </Link>
         </div>

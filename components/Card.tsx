@@ -1,68 +1,71 @@
-import { Icon, IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import React, { useState } from "react";
+import { FiClock, FiHeart } from "react-icons/fi";
 
 export default function Card() {
+  const props = {
+    category: "Education",
+    title: "inCharge X - The 100W Swiss Army Knife of Cables",
+    subtitle:
+      "The most crowdfunded cable EVER is back! Tiny, Universal, Ultra Powerful keyring cable.",
+    creator: {
+      id: "1234",
+      firstName: "Hoang",
+      lastName: "Nguyen",
+    },
+    dueDate: "18/01/2021",
+    fundingGoal: 10000,
+    currentFund: 3000,
+    media: "thumbnail.jpg",
+  };
   return (
-    <div className="flex flex-col border border-gray-300 z-0 cursor-pointer rounded-lg max-w-4xl transition duration-300 ease-in-out transform hover:shadow-lg">
-      <img
-        className="h-60 w-max rounded-t-lg"
-        src="thumbnail.jpg"
-        alt="thumbnail"
-      />
-      <div className="px-2">
-        <div className="flex flex-row space-x-2 p-2 justify-between">
-          <p>Education</p>
-          <FontAwesomeIcon
-            icon={["far", "heart"] as IconProp}
-            className="h-6 w-6 cursor-pointer hover:text-red-400"
-            size="lg"
-          />
-        </div>
-        <hr />
-        <div id="article" className="p-2">
-          <div>
-            <span className="bg-red-400 text-white rounded-lg p-1 mr-2 text-xs">
-              Funding
-            </span>
-            <span className="text-lg">
-              inCharge X - The 100W Swiss Army Knife of Cables
-            </span>
+    <>
+      <Link href={`/project/${props.title}`}>
+        <div className="flex flex-col bg-white overflow-hidden border-gray-300 rounded cursor-pointer max-w-4xl transition duration-300 ease-in-out transform hover:shadow-lg">
+          <div className="aspect-w-4 aspect-h-3">
+            <img src={props.media} alt={props.media} />
           </div>
-          <div className="font-normal text-sm text-gray-700" id="content">
-            The most crowdfunded cable EVER is back! Tiny, Universal, Ultra
-            Powerful keyring cable.
-          </div>
-          <div className="text-sm font-light mb-1">
-            By <a href="#">Hoang Nguyen</a>
-          </div>
-        </div>
+          <div className="p-4">
+            <div className="flex flex-row space-x-2 justify-between">
+              <p className="uppercase text-red-400">{props.category}</p>
+              <FiHeart className="h-6 cursor-pointer text-gray-400 hover:text-red-400" />
+            </div>
+            <a className="">
+              {props.creator.firstName + " " + props.creator.lastName}
+            </a>
+            <hr />
+            <div id="article" className="pt-2">
+              <p className="text-lg truncate">{props.title}</p>
+              <div className="font-normal text-sm text-gray-700" id="content">
+                {props.subtitle}
+              </div>
+            </div>
 
-        <div className="p-2">
-          <hr />
-          <div className="text-md space-x-2 text-red-400">
-            <FontAwesomeIcon icon={["far", "clock"] as IconProp} />
-            <span>2 days left </span>
-          </div>
-          <div className="pt-1">
-            <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200">
-              <div
-                style={{ width: "30%" }}
-                className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
-              ></div>
+            <div className="pt-2">
+              <hr />
+              <div className="text-md text-red-400 pt-2">
+                <FiClock className="inline-flex mb-1 mr-1" />
+                <span>{props.dueDate}</span>
+              </div>
+              <div className="">
+                <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200">
+                  <div
+                    style={{ width: "30%" }}
+                    className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+                  ></div>
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">
+                  {(props.currentFund * 100) / props.fundingGoal}
+                  <span className="text-xs">%</span>
+                </span>
+                <span className="text-green-500">${props.fundingGoal}</span>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-row justify-between">
-            <div>
-              <span className="text-lg text-green-500">$8000</span>
-              <span className="text-sm font-light text-gray-500 pl-1">
-                funded
-              </span>
-            </div>
-            <div className="text-gray-500">30%</div>
           </div>
         </div>
-      </div>
-    </div>
+      </Link>
+    </>
   );
 }

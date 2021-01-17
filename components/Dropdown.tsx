@@ -1,5 +1,3 @@
-import { Icon, IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import useOnClickOutside from "../hooks/useClickOutside";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
@@ -13,7 +11,8 @@ export default function Dropdown() {
   // state showing if dropdown is open or closed
   const [dropdown, setDropdown] = useState(false);
   // managing dropdown items (list of dropdown items)
-  const [items, setItem] = useState([
+  const items = [
+    "All",
     "Animal",
     "Arts and Culture",
     "Community",
@@ -22,10 +21,10 @@ export default function Dropdown() {
     "Health",
     "Human Services",
     "International NGOs",
-  ]);
+  ];
   const ref = useRef();
   // contains multiselect items
-  const [selectedItem, setSelected] = useState(null);
+  const [selectedItem, setSelected] = useState(0);
 
   const handleOnClick = (item) => {
     setSelected(item);
@@ -43,17 +42,17 @@ export default function Dropdown() {
         <div>
           <button
             type="button"
-            className="inline-flex w-full justify-between rounded-md text-sm border border-gray-300 px-3 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+            className="inline-flex w-full justify-between rounded border bg-white text-gray-700 border-gray-300 px-4 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
             onClick={toogleDropdown}
           >
-            {selectedItem ? selectedItem : "Select options"}
+            {items[selectedItem]}
             {dropdown ? (
-              <FiChevronUp className="h-5" />
+              <FiChevronUp className="h-6" />
             ) : (
-              <FiChevronDown className="h-5" />
+              <FiChevronDown className="h-6" />
             )}
           </button>
         </div>
@@ -72,12 +71,12 @@ export default function Dropdown() {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {items.map((item, key) => {
+            {items.map((item, index) => {
               return (
                 <a
-                  key={key}
+                  key={index}
                   href="#"
-                  onClick={() => handleOnClick(item)}
+                  onClick={() => handleOnClick(index)}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
                 >

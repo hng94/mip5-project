@@ -1,8 +1,6 @@
-import { Icon, IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import Carousel from "./Carousel";
-
+import { FiHeart, FiClock } from "react-icons/fi";
 export default function ProductSection() {
   return (
     <>
@@ -38,7 +36,7 @@ export default function ProductSection() {
           <div>
             <div className="flex flex-row justify-between">
               <div className="text-md space-x-2 text-red-400">
-                <FontAwesomeIcon icon={["far", "clock"] as IconProp} />
+                <FiClock className="inline-flex" />
                 <span>2 days</span>
               </div>
               <p>832 backers</p>
@@ -65,11 +63,7 @@ export default function ProductSection() {
             <button className="bg-red-400 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
               back it
             </button>
-            <FontAwesomeIcon
-              icon={["far", "heart"] as IconProp}
-              className="mr-2 text-red-400"
-              size="lg"
-            />
+            <FiHeart className="inline-flex" />
           </div>
         </div>
       </div>

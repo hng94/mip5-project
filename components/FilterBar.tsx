@@ -1,23 +1,33 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import Dropdown from "./Dropdown";
-
+import { FiSearch, FiDroplet, FiLoader, FiTrendingUp } from "react-icons/fi";
+import SearchInput from "./SearchInput";
 export default function FilterBar() {
   return (
-    <div className="rounded-md border border-gray-300 flex justify-start p-2 space-x-2">
-      <a href="#" className="rounded-full bg-gray-200 py-2 px-4">
-        <FontAwesomeIcon className="text-red-400" icon="burn" size="lg" />
+    <div className="rounded-md flex flex-col space-y-2">
+      <SearchInput />
+      <a
+        href="#"
+        className="rounded bg-white border-gray-300 border py-2 px-4  text-gray-700 hover:text-red-400"
+      >
+        <FiDroplet className="mb-1 inline-flex" />
         <span className="ml-2">Hot</span>
       </a>
-      <a href="#" className="rounded-full bg-gray-200 py-2 px-4">
-        <FontAwesomeIcon className="text-red-400" icon="asterisk" size="lg" />
+      <a
+        href="#"
+        className="rounded bg-white border-gray-300 border py-2 px-4  text-gray-700 hover:text-red-400"
+      >
+        <FiLoader className="mb-1 inline-flex" />
         <span className="ml-2">New</span>
       </a>
-      <a href="#" className="rounded-full bg-gray-200 py-2 px-4">
-        <FontAwesomeIcon className="text-red-400" icon="chart-line" size="lg" />
+      <a
+        href="#"
+        className="rounded bg-white border-gray-300 border py-2 px-4 text-gray-700 hover:text-red-400"
+      >
+        <FiTrendingUp className="mb-1 inline-flex" />
         <span className="ml-2">Trend</span>
       </a>
-      <div className="mt-px">
+      <div>
         <Dropdown />
       </div>
     </div>

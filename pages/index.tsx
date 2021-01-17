@@ -9,22 +9,22 @@ import PopularList from "../components/PopularList";
 import TagList from "../components/TagList";
 
 export default function Home() {
+  const cards = [...new Array(5).fill({})].map(() =>
+    Math.floor(Math.random() * 1000)
+  );
   return (
     <>
       <div className="grid grid-cols-4 space-x-6">
-        <div className="relative space-y-4 col-span-3">
-          <FilterBar />
+        <FilterBar />
+        <div className="col-span-3">
           <div className="grid grid-col sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Card />
-            <Card />
-            <Card />
+            {cards.map((value, index) => (
+              <Card key={index} />
+            ))}
           </div>
-          <div className="text-red-400 w-40 text-center mx-auto rounded-md py-2 text-sm cursor-pointer uppercase border transition duration-300 ease-in-out transform border-red-400 hover:bg-red-400 hover:text-white">
+          <div className="mt-4 text-center text-white rounded bg-red-400 cursor-pointer px-3 py-2 transition duration-300 ease-in-out transform hover:shadow-lg hover:bg-red-500">
             Show more
           </div>
-        </div>
-        <div className="">
-          <PopularList />
         </div>
       </div>
     </>

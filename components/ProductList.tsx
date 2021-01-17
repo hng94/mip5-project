@@ -1,11 +1,11 @@
-import PerkCard from "./PerkCard";
+import ProductCard from "./ProductCard";
 
-export default function PerkList() {
+export default function ProductList() {
   const perkList = ["single", "double", "deluxe", "early bird"];
   return (
     <div className="space-y-4">
       {perkList.map((perk, index) => (
-        <PerkCard {...{ perk }} key={index} />
+        <ProductCard {...{ perk }} key={index} />
       ))}
     </div>
   );
