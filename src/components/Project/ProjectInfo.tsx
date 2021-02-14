@@ -1,7 +1,7 @@
 import * as React from "react";
-import Carousel from "./Carousel";
+import Carousel from "../common/Carousel";
 import { FiHeart, FiClock } from "react-icons/fi";
-export default function ProductSection() {
+export default function ProjectInfo() {
   return (
     <>
       <div className="grid grid-cols-2 gap-4">

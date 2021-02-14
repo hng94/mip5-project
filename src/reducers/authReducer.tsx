@@ -1,5 +1,5 @@
-import { removeLocalStorageValue, setLocalStorage } from "../common";
-import { IAuthDTO } from "../types/IAuth";
+import { removeLocalStorageValue, setLocalStorage } from "../ultilities";
+import { IAuth } from "../types/IAuth";
 
 export enum AuthActionTypes {
   LOGIN = "LOGIN",
@@ -8,10 +8,10 @@ export enum AuthActionTypes {
 
 export type AuthAction = {
   type: AuthActionTypes;
-  payload: IAuthDTO;
+  payload: IAuth;
 };
 
-export function authReducer(state: IAuthDTO, action: AuthAction): IAuthDTO {
+export function authReducer(state: IAuth, action: AuthAction): IAuth {
   switch (action.type) {
     case AuthActionTypes.LOGIN: {
       setLocalStorage("auth", action.payload);

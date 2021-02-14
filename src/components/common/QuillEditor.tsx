@@ -42,19 +42,20 @@ const formats = [
   "video",
 ];
 
-export default function QuillEditor() {
-  const [value, setValue] = useState("");
+export default function QuillEditor({ story, setStory, ...rest }) {
+  // const [value, setValue] = useState("");
   const handleChange = (newValue) => {
-    setValue(newValue);
+    setStory(newValue);
     console.log(newValue);
   };
   return (
     <ReactQuill
+      {...rest}
       id="quill-editor"
       modules={modules}
       formats={formats}
       theme="snow"
-      value={value}
+      value={story}
       placeholder="Write your story here"
       onChange={(value) => handleChange(value)}
     />

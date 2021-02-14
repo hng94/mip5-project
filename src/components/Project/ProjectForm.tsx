@@ -1,8 +1,13 @@
-import Dropdown from "../../../components/Dropdown";
-import QuillEditor from "../../../components/QuillEditor";
+import React, { useState } from "react";
+import useCategory from "../../contexts/CategoryContext";
+import { ICategory } from "../../types/ICategory";
+import Dropdown from "../common/Dropdown";
+import QuillEditor from "../common/QuillEditor";
 
-export default function edit() {
-  const initData = {};
+export default function ProjectForm() {
+  const [story, setStory] = useState("");
+  const [selectedCategory, setCategory] = useState<ICategory>();
+  const { categories } = useCategory();
   return (
     <>
       <div className="mt-5 md:mt-0">
@@ -24,18 +29,18 @@ export default function edit() {
                   <input
                     type="text"
                     placeholder="Custom focus style"
-                    className="mt-1"
+                    className="form-input mt-1 block w-full rounded border-gray-300"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
                     Subtitle
                   </label>
-                  <div className="mt-1">
+                  <div className="form-input mt-1">
                     <input
                       type="text"
                       placeholder="Custom focus style"
-                      className="mt-1"
+                      className="form-input mt-1 block w-full rounded border-gray-300"
                     />
                   </div>
                 </div>
@@ -43,7 +48,7 @@ export default function edit() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Category
                   </label>
-                  <Dropdown />
+                  <Dropdown items={categories} setValue={setCategory} />
                 </div>
               </div>
 
@@ -60,7 +65,7 @@ export default function edit() {
                           id="file-upload"
                           name="file-upload"
                           type="file"
-                          className="sr-only"
+                          className="form-input mt-1 block w-full rounded border-gray-300 sr-only"
                         />
                       </label>
                       <p className="pl-1">or drag and drop</p>
@@ -80,7 +85,7 @@ export default function edit() {
                     type="number"
                     placeholder="0"
                     step={100}
-                    className="mt-1"
+                    className="form-input mt-1 block w-full rounded border-gray-300"
                   />
                 </div>
               </div>
@@ -99,7 +104,7 @@ export default function edit() {
                   <input
                     type="text"
                     placeholder="Product title"
-                    className="mt-1"
+                    className="form-input mt-1 block w-full rounded border-gray-300"
                   />
                 </div>
                 <div>
@@ -110,7 +115,7 @@ export default function edit() {
                     <input
                       type="number"
                       placeholder="o"
-                      className="mt-1"
+                      className="form-input mt-1 block w-full rounded border-gray-300"
                       step={10}
                       min={0}
                     />
@@ -123,7 +128,7 @@ export default function edit() {
                 </label>
                 <textarea
                   rows={4}
-                  className="resize-none mt-1"
+                  className="resize-none form-input mt-1 block w-full rounded border-gray-300"
                   placeholder="Product description"
                 ></textarea>
               </div>
@@ -155,7 +160,7 @@ export default function edit() {
                 <p className="text-2xl text-red-400 mb-2 pb-2 border-b-2 border-red-400">
                   Story
                 </p>
-                <QuillEditor />
+                <QuillEditor story={story} setStory={setStory} />
               </div>
               <div>
                 <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
@@ -164,11 +169,16 @@ export default function edit() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="mt-2">
                     <label>Start date</label>
-                    <input type="date" id="startDate" />
+                    <input
+                      type="date"
+                      className="form-input mt-1 block w-full rounded border-gray-300"
+                      id="startDate"
+                    />
                   </div>
                   <div className="mt-2">
                     <label>Duration (days)</label>
                     <input
+                      className="form-input mt-1 block w-full rounded border-gray-300"
                       type="number"
                       min={1}
                       max={365}

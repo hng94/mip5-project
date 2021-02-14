@@ -1,26 +1,93 @@
-import React, { useRef, useState } from "react";
+import { gql, useMutation } from "@apollo/client";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import ErrorHandler from "./common/ErrorHandler";
+import useAuth from "../contexts/AuthContext";
+import { AuthActionTypes } from "../reducers/authReducer";
+import { IAuth } from "../types/IAuth";
 
-type IRegister = {
+interface IRegisterForm {
   firstName: string;
   lastName: string;
-  // address: string;
-  // postcode: string;
-  // phone: string;
+  address: string;
+  postcode: string;
+  phone: string;
   email: string;
   password: string;
-  password2: string;
-  agree: boolean;
-};
+  password2?: string;
+  agree?: boolean;
+}
+
+interface ICreateUser {
+  firstName: string;
+  lastName: string;
+  address: string;
+  postcode: string;
+  phone: string;
+  email: string;
+  password: string;
+}
+
+const REGISTER = gql`
+  mutation RegisterUser($data: CreateUserInput!) {
+    register(data: $data) {
+      email
+      token
+    }
+  }
+`;
 const Register = () => {
-  const { register, handleSubmit, watch, errors } = useForm<IRegister>();
+  const { state: auth, dispatch } = useAuth();
+
+  const {
+    register: registerForm,
+    handleSubmit,
+    watch,
+    errors,
+  } = useForm<IRegisterForm>();
+  const [register, { loading, error, data }] = useMutation<{
+    register: IAuth;
+    data: ICreateUser;
+  }>(REGISTER);
   const password = useRef({});
   password.current = watch("password", "");
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = ({
+    firstName,
+    lastName,
+    email,
+    postcode,
+    address,
+    phone,
+    password,
+  }: IRegisterForm) => {
+    register({
+      variables: {
+        data: {
+          firstName,
+          lastName,
+          email,
+          postcode,
+          address,
+          phone,
+          password,
+        },
+      },
+    });
+  };
 
+  useEffect(() => {
+    console.log(data);
+    if (data?.register) {
+      dispatch({
+        type: AuthActionTypes.LOGIN,
+        payload: data.register,
+      });
+    }
+  }, [data]);
   return (
     <>
       <div className="rounded shadow p-4 bg-white w-full lg:w-5/12 mx-auto">
+        <ErrorHandler error={error} />
         <p className="text-3xl mb-6">Register</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -36,7 +103,7 @@ const Register = () => {
                 className="form-input mt-1 block w-full rounded border-gray-300"
                 type="text"
                 name="firstName"
-                ref={register({ required: " is required" })}
+                ref={registerForm({ required: " is required" })}
               />
             </label>
           </div>
@@ -53,7 +120,7 @@ const Register = () => {
                 type="text"
                 name="lastName"
                 className="form-input mt-1 block w-full rounded border-gray-300"
-                ref={register({ required: " is required" })}
+                ref={registerForm({ required: " is required" })}
               />
             </label>
           </div>
@@ -70,7 +137,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 className="form-input mt-1 block w-full rounded border-gray-300"
-                ref={register({ required: " is required" })}
+                ref={registerForm({ required: " is required" })}
               />
             </label>
           </div>
@@ -88,7 +155,7 @@ const Register = () => {
               type="password"
               name="password"
               className="form-input mt-1 block w-full rounded border-gray-300"
-              ref={register({ required: " is required" })}
+              ref={registerForm({ required: " is required" })}
             />
           </div>
           <div>
@@ -105,7 +172,7 @@ const Register = () => {
               type="password"
               name="password2"
               className="form-input mt-1 block w-full rounded border-gray-300"
-              ref={register({
+              ref={registerForm({
                 required: " is required",
                 validate: (value) => {
                   if (value != password.current) {
@@ -115,7 +182,7 @@ const Register = () => {
               })}
             />
           </div>
-          {/* <div>
+          <div>
             <label
               className="text-xs font-semibold text-gray-600 uppercase"
               htmlFor="address"
@@ -126,7 +193,7 @@ const Register = () => {
               type="text"
               name="address"
               className="form-input mt-1 block w-full rounded border-gray-300"
-              ref={register}
+              ref={registerForm}
             />
           </div>
           <div>
@@ -140,7 +207,7 @@ const Register = () => {
               type="text"
               name="postcode"
               className="form-input mt-1 block w-full rounded border-gray-300"
-              ref={register}
+              ref={registerForm}
             />
           </div>
           <div>
@@ -154,10 +221,9 @@ const Register = () => {
               type="text"
               name="phone"
               className="form-input mt-1 block w-full rounded border-gray-300"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              ref={register}
+              ref={registerForm}
             />
-          </div> */}
+          </div>
           <div>
             <label htmlFor="agree">
               <input
@@ -165,7 +231,7 @@ const Register = () => {
                 type="checkbox"
                 className="h-5 w-5 text-blue-500 rounded focus:outline-none border-gray-300"
                 // checked={agree}
-                ref={register({ required: true })}
+                ref={registerForm({ required: true })}
                 // onChange={() => setAgree(!agree)}
               />
               <span className="ml-2">

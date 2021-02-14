@@ -1,33 +1,29 @@
-import React, { useRef, useState } from "react";
-import useOnClickOutside from "../hooks/useClickOutside";
+import React, { Dispatch, useRef, useState } from "react";
+import useOnClickOutside from "../../hooks/useClickOutside";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 type IDropdown = {
-  items: string[];
-  setItem: (item: any) => void;
+  id: string;
+  name: string;
 };
 
-export default function Dropdown() {
+interface DropdownProps {
+  items: IDropdown[];
+  setValue: Dispatch<any>;
+}
+
+export default function Dropdown({ items, setValue }: DropdownProps) {
   // state showing if dropdown is open or closed
   const [dropdown, setDropdown] = useState(false);
   // managing dropdown items (list of dropdown items)
-  const items = [
-    "All",
-    "Animal",
-    "Arts and Culture",
-    "Community",
-    "Education",
-    "Environment",
-    "Health",
-    "Human Services",
-    "International NGOs",
-  ];
+
   const ref = useRef();
   // contains multiselect items
-  const [selectedItem, setSelected] = useState(0);
+  const [selectedItem, setSelected] = useState(items[0]);
 
-  const handleOnClick = (item) => {
+  const handleOnClick = (item: IDropdown) => {
     setSelected(item);
+    setValue(item);
     toogleDropdown();
   };
   // toggle dropdown open/close
@@ -48,7 +44,7 @@ export default function Dropdown() {
             aria-expanded="true"
             onClick={toogleDropdown}
           >
-            {items[selectedItem]}
+            {selectedItem.name}
             {dropdown ? (
               <FiChevronUp className="h-6" />
             ) : (
@@ -76,11 +72,11 @@ export default function Dropdown() {
                 <a
                   key={index}
                   href="#"
-                  onClick={() => handleOnClick(index)}
+                  onClick={() => handleOnClick(item)}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
                 >
-                  {item}
+                  {item.name}
                 </a>
               );
             })}

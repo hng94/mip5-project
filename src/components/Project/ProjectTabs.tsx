@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Comments from "./Comment/Comments";
-import QuillEditor from "./QuillEditor";
-import Story from "./Story";
-import Timeline from "./Timeline";
+import Comments from "../Comment/Comments";
+import QuillEditor from "../common/QuillEditor";
+import Timeline from "./ProjectTimeline";
 
 export default function Tabs() {
   const [openTab, setOpenTab] = useState(0);
@@ -42,7 +41,7 @@ export default function Tabs() {
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space ">
                 <div className={openTab === 0 ? "block" : "hidden"} id="link1">
-                  <QuillEditor />
+                  <QuillEditor story={null} setStory={() => {}} />
                 </div>
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                   <Timeline />

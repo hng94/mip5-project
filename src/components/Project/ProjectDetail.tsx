@@ -1,7 +1,7 @@
 import * as React from "react";
-import ProductCard from "../../../components/ProductCard";
-import ProductSection from "../../../components/ProductSection";
-import Tabs from "../../../components/Tabs";
+import ProductCard from "../Product/ProductCard";
+import ProjectInfo from "./ProjectInfo";
+import Tabs from "./ProjectTabs";
 
 export default function Detail() {
   const product = {
@@ -11,7 +11,7 @@ export default function Detail() {
   };
   return (
     <>
-      <ProductSection />
+      <ProjectInfo />
       <hr className="my-2" />
       <div className="grid grid-cols-4 gap-6">
         <div className="col-span-3">

@@ -1,5 +1,9 @@
-export interface IAuthDTO {
-  email: string | null;
-  password?: string;
-  token: string | null;
+export interface IAuth {
+  email: string;
+  token: string;
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
 }

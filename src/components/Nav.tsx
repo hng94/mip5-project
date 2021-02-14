@@ -12,6 +12,14 @@ export default function Nav() {
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
   const [isOpen, setOpen] = useState(false);
+  const handleSignOut = () => {
+    setOpen(false);
+    dispatch({
+      type: AuthActionTypes.LOGOUT,
+      payload: initialAuth,
+    });
+  };
+
   return (
     <AuthProvider>
       <nav
@@ -73,17 +81,17 @@ export default function Nav() {
 
                     <div className="py-1">
                       <Menu.Item>
-                        <a href="/profile">
+                        <Link to="/profile">
                           <a
                             onClick={() => setOpen(!isOpen)}
                             className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
                           >
                             Profile
                           </a>
-                        </a>
+                        </Link>
                       </Menu.Item>
                       <Menu.Item>
-                        <a href="/project">
+                        <a href="/projects">
                           <a
                             onClick={() => setOpen(!isOpen)}
                             className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
@@ -113,12 +121,7 @@ export default function Nav() {
                                 ? "bg-gray-100 text-gray-900"
                                 : "text-gray-700"
                             } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
-                            onClick={() =>
-                              dispatch({
-                                type: AuthActionTypes.LOGOUT,
-                                payload: initialAuth,
-                              })
-                            }
+                            onClick={handleSignOut}
                           >
                             Sign out
                           </a>

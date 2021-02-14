@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useAuth, { AuthContext } from "../contexts/AuthContext";
-import { IAuthDTO } from "../types/IAuth";
+import { IAuth, ILogin } from "../types/IAuth";
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import ErrorHandler from "../components/ErrorHandler";
+import ErrorHandler from "./common/ErrorHandler";
 import { useHistory } from "react-router-dom";
 import { AuthActionTypes } from "../reducers/authReducer";
 
 interface ILoginData {
-  login: IAuthDTO;
+  login: IAuth;
 }
 
 const LOGIN = gql`
@@ -22,12 +22,13 @@ const LOGIN = gql`
 const Login: React.FC = () => {
   let history = useHistory();
   const { state: auth, dispatch } = useAuth();
-  const { register, handleSubmit, watch, errors } = useForm<IAuthDTO>();
+  const { register, handleSubmit, watch, errors } = useForm<ILogin>();
   const [
     sendLogin,
     { loading, error, data: loginResult },
   ] = useLazyQuery<ILoginData>(LOGIN, { errorPolicy: "all" });
-  const onSubmit = (input: IAuthDTO) => {
+
+  const onSubmit = (input: ILogin) => {
     sendLogin({
       variables: {
         email: input.email,

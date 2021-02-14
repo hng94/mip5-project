@@ -8,9 +8,9 @@ body {
   @apply bg-gray-100;
 }
 
-/* @layer components {
+@layer components {
   input,
   textarea {
     @apply px-3 py-2 leading-5 focus:outline-none  focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-300;
   }
-} */
+}

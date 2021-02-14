@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FiClock, FiHeart } from "react-icons/fi";
-import { IProject } from "../types/IProject";
+import { IProject } from "../../types/IProject";
 
 interface CardProps {
   project: IProject;
 }
 
-export default function Card({ project }: CardProps) {
+export default function ProjectCard({ project }: CardProps) {
   const props = {
     category: "Education",
     title: "inCharge X - The 100W Swiss Army Knife of Cables",

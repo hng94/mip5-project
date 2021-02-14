@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IAuthDTO } from "../types/IAuth";
+import { IAuth } from "../types/IAuth";
 import { createContext, FC, useEffect, useReducer } from "react";
 import {
   AuthAction,
@@ -7,10 +7,10 @@ import {
   authReducer,
 } from "../reducers/authReducer";
 import jwtDecode from "jwt-decode";
-import { getLocalStorageValue } from "../common";
+import { getLocalStorageValue } from "../ultilities";
 
 interface AuthContextProps {
-  state: IAuthDTO;
+  state: IAuth;
   dispatch: React.Dispatch<AuthAction>;
 }
 
