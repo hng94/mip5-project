@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FiClock, FiHeart } from "react-icons/fi";
-import { IProject } from "../../types/IProject";
+import { ProjectDTO } from "../../DTO/ProjectDTO";
 
 interface CardProps {
-  project: IProject;
+  project: ProjectDTO;
 }
 
 export default function ProjectCard({ project }: CardProps) {
@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: CardProps) {
   };
   return (
     <>
-      <a href={`/project/${project.name}`}>
+      <a href={`/project/${project.title}`}>
         <div className="flex flex-col bg-white overflow-hidden border-gray-300 rounded cursor-pointer max-w-4xl transition duration-300 ease-in-out transform hover:shadow-lg">
           <div className="aspect-w-4 aspect-h-3">
             <img src={props.media} alt={props.media} />
@@ -39,7 +39,7 @@ export default function ProjectCard({ project }: CardProps) {
             </a>
             <hr />
             <div id="article" className="pt-2">
-              <p className="text-lg truncate">{project.name}</p>
+              <p className="text-lg truncate">{project.title}</p>
               <div className="font-normal text-sm text-gray-700" id="content">
                 {props.subtitle}
               </div>

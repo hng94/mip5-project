@@ -7,24 +7,25 @@ import {
   useEffect,
   useState,
 } from "react";
-import { ICategory } from "../types/ICategory";
+
+import { CategoryDTO } from "../DTO/CategoryDTO";
 
 interface CategoryContextProps {
-  categories: ICategory[];
-  setCategories: Dispatch<ICategory[]>;
+  categories: CategoryDTO[];
+  setCategories: Dispatch<CategoryDTO[]>;
 }
 
 interface ICategoriesData {
-  categories: ICategory[];
+  categories: CategoryDTO[];
 }
 
 const GET_CATEGORIES = gql`
-    query GetCategories() {
-        categories() {
-            id
-            name
-        }
+  query GetCategories {
+    categories {
+      id
+      name
     }
+  }
 `;
 export const CategoryContext = createContext<CategoryContextProps>({
   categories: [],
@@ -32,7 +33,7 @@ export const CategoryContext = createContext<CategoryContextProps>({
 });
 
 export const CategoryProvider: FC = ({ children }) => {
-  const [categories, setCategories] = useState<ICategory[]>();
+  const [categories, setCategories] = useState<CategoryDTO[]>();
   const { loading, error, data } = useQuery<ICategoriesData>(GET_CATEGORIES);
   useEffect(() => {
     if (data) {

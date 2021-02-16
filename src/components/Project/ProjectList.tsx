@@ -3,7 +3,7 @@ export default function ProjectList() {
     <>
       <div className="py-4 flex flex-row justify-between">
         <p className="text-3xl">Projects</p>
-        <a href="/project/new/edit">
+        <a href="/project/create">
           <button className="focus:outline-none bg-blue-500 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
             New
           </button>

@@ -46,7 +46,6 @@ export default function QuillEditor({ story, setStory, ...rest }) {
   // const [value, setValue] = useState("");
   const handleChange = (newValue) => {
     setStory(newValue);
-    console.log(newValue);
   };
   return (
     <ReactQuill

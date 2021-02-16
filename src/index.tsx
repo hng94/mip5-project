@@ -7,12 +7,15 @@ import App from "./components/App";
 import {
   ApolloClient,
   ApolloProvider,
+  createHttpLink,
   DefaultOptions,
   gql,
   InMemoryCache,
 } from "@apollo/client";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CategoryProvider } from "./contexts/CategoryContext";
+import { setContext } from "@apollo/client/link/context";
+import { AuthDTO } from "./DTO/AuthDTO";
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -39,13 +42,47 @@ const typeDefs = gql`
     password: String
   }
 
+  extend type CreateProjectInput {
+    title: String
+    subTitle: String
+    url: String
+    categoryId: String
+    story: String
+    startDate: Date
+    duration: Number
+    products: [CreateProductInput]
+    fundingGoal: Number
+  }
+
+  extend type CreateProductInput {
+    title: String
+    description: String
+    price: Number
+    url: String
+  }
+
   extend type Category {
     id: String
     name: String
   }
 `;
-const client = new ApolloClient({
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const auth: AuthDTO = JSON.parse(localStorage.getItem("auth"));
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: auth?.token ? `Bearer ${auth.token}` : "",
+    },
+  };
+});
+const httpLink = createHttpLink({
   uri: "http://localhost:4000/graphql",
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
   typeDefs,

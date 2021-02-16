@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorHandler from "./common/ErrorHandler";
 import useAuth from "../contexts/AuthContext";
 import { AuthActionTypes } from "../reducers/authReducer";
-import { IAuth } from "../types/IAuth";
+import { AuthDTO } from "../DTO/AuthDTO";
 
 interface IRegisterForm {
   firstName: string;
@@ -46,7 +46,7 @@ const Register = () => {
     errors,
   } = useForm<IRegisterForm>();
   const [register, { loading, error, data }] = useMutation<{
-    register: IAuth;
+    register: AuthDTO;
     data: ICreateUser;
   }>(REGISTER);
   const password = useRef({});

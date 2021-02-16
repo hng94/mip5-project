@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IAuth } from "../types/IAuth";
+import { AuthDTO } from "../DTO/AuthDTO";
 import { createContext, FC, useEffect, useReducer } from "react";
 import {
   AuthAction,
@@ -7,10 +7,10 @@ import {
   authReducer,
 } from "../reducers/authReducer";
 import jwtDecode from "jwt-decode";
-import { getLocalStorageValue } from "../ultilities";
+import { getLocalStorageValue } from "../common";
 
 interface AuthContextProps {
-  state: IAuth;
+  state: AuthDTO;
   dispatch: React.Dispatch<AuthAction>;
 }
 
@@ -30,6 +30,7 @@ const isValidToken = (token: string): boolean => {
   }
 };
 export const initialAuth = {
+  id: null,
   email: null,
   token: null,
 };

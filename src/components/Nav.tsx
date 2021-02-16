@@ -28,10 +28,10 @@ export default function Nav() {
       >
         <div className="space-x-2">
           <a href="/">
-            <a className="rounded-md py-2 font-medium text-red-400 uppercase">
+            <p className="rounded-md py-2 font-medium text-red-400 uppercase">
               <FiHeart className="inline-flex h-5 w-5 mr-2" />
               give
-            </a>
+            </p>
           </a>
         </div>
         {!auth?.token ? (
