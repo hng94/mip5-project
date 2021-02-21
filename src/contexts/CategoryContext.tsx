@@ -10,7 +10,7 @@ import {
 
 import { CategoryDTO } from "../DTO/CategoryDTO";
 
-interface CategoryContextProps {
+interface ICategoryContext {
   categories: CategoryDTO[];
   setCategories: Dispatch<CategoryDTO[]>;
 }
@@ -27,7 +27,7 @@ const GET_CATEGORIES = gql`
     }
   }
 `;
-export const CategoryContext = createContext<CategoryContextProps>({
+export const CategoryContext = createContext<ICategoryContext>({
   categories: [],
   setCategories: () => {},
 });

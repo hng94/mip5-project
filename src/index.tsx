@@ -48,13 +48,34 @@ const typeDefs = gql`
     url: String
     categoryId: String
     story: String
-    startDate: Date
-    duration: Number
+    # startDate?: Date
+    # duration?: Number
     products: [CreateProductInput]
     fundingGoal: Number
   }
 
+  extend type UpdateProjectInput {
+    id: ID
+    title: String
+    subTitle: String
+    url: String
+    categoryId: ID
+    story: String
+    # startDate?: Date
+    # duration?: Number
+    products: [UpdateProductInput]
+    fundingGoal: Number
+  }
+
   extend type CreateProductInput {
+    title: String
+    description: String
+    price: Number
+    url: String
+  }
+
+  extend type UpdateProductInput {
+    id: ID
     title: String
     description: String
     price: Number

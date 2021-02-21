@@ -4,9 +4,13 @@ import { UserDTO } from "./UserDTO";
 
 export interface CommentDTO {
   id: string;
+
   creator: UserDTO;
 
+  comment: CommentDTO;
+
   project: ProjectDTO;
+
   content: string;
 
   likeCount: number;

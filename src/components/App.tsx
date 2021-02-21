@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { IndexPage } from "./IndexPage";
+import { HomePage } from "./HomePage";
 import Nav from "./Nav";
 import ProtectedRoute from "./ProtectedRoute";
 import { ProjectDTO } from "../DTO/ProjectDTO";
@@ -9,7 +9,10 @@ import Login from "./Login";
 import ProjectList from "./Project/ProjectList";
 import Register from "./Register";
 import Profile from "./Profile";
-import ProjectForm from "./Project/ProjectForm";
+import CreateProjectForm from "./Project/CreateProjectForm";
+import ProjectDetail from "./Project/ProjectDetail";
+import { ProjectProvider } from "../contexts/ProjectContext";
+import EditProjectForm from "./Project/EditProjectForm";
 
 export default function App() {
   return (
@@ -19,11 +22,11 @@ export default function App() {
         <div className="container max-w-screen-xl mx-auto">
           <Switch>
             <Route exact path="/">
-              <IndexPage />
+              <HomePage />
             </Route>
-            <ProtectedRoute isPrivate={true} exact path="/projects">
+            <Route exact path="/projects">
               <ProjectList />
-            </ProtectedRoute>
+            </Route>
             <ProtectedRoute isPrivate={false} path="/login">
               <Login />
             </ProtectedRoute>
@@ -34,7 +37,17 @@ export default function App() {
               <Profile />
             </ProtectedRoute>
             <ProtectedRoute isPrivate={true} path="/projects/create">
-              <ProjectForm />
+              <CreateProjectForm />
+            </ProtectedRoute>
+            <Route path="/projects/detail/:projectId">
+              <ProjectProvider>
+                <ProjectDetail />
+              </ProjectProvider>
+            </Route>
+            <ProtectedRoute isPrivate={true} path="/projects/edit/:projectId">
+              <ProjectProvider>
+                <EditProjectForm />
+              </ProjectProvider>
             </ProtectedRoute>
           </Switch>
         </div>

@@ -4,7 +4,7 @@ import useAuth, { AuthContext } from "../contexts/AuthContext";
 import { AuthDTO, AuthInput } from "../DTO/AuthDTO";
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import ErrorHandler from "./common/ErrorHandler";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthActionTypes } from "../reducers/authReducer";
 
 interface ILoginData {
@@ -14,6 +14,7 @@ interface ILoginData {
 const LOGIN = gql`
   query LoginQuery($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      id
       email
       token
     }
@@ -99,16 +100,16 @@ const Login: React.FC = () => {
           </button>
         </form>
         <div className="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-          <a href="/forgot-password">
-            <a className="flex-2 underline">Forgot password?</a>
-          </a>
+          {/* <Link to="/forgot-password">
+            <span className="flex-2 underline">Forgot password?</span>
+          </Link> */}
 
-          <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
+          {/* <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
             or
-          </p>
-          <a href="/register">
-            <a className="flex-2 underline">Create an Account</a>
-          </a>
+          </p> */}
+          <Link to="/register">
+            <span className="flex-2 underline">Create an Account</span>
+          </Link>
         </div>
       </div>
     </>

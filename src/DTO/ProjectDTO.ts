@@ -1,43 +1,44 @@
 import { CategoryDTO } from "./CategoryDTO";
+import { CommentDTO } from "./CommentDTO";
 import { LikeDTO } from "./LikeDTO";
 import { ProductDTO } from "./ProductDTO";
 import { TimelineDTO } from "./TimelineDTO";
 import { UserDTO } from "./UserDTO";
 
 export interface ProjectDTO {
-  id: string;
+  id?: string;
 
-  title: string;
+  title?: string;
 
-  subTitle: string;
+  subTitle?: string;
 
   url?: string;
 
-  category: CategoryDTO;
+  category?: CategoryDTO;
 
-  story: string;
+  story?: string;
 
-  creator: UserDTO;
+  creator?: UserDTO;
 
-  timelines: TimelineDTO[];
+  timelines?: TimelineDTO[];
 
-  backers: UserDTO[];
+  backers?: UserDTO[];
 
-  products: ProductDTO[];
+  products?: ProductDTO[];
 
-  likes: LikeDTO[];
+  likes?: LikeDTO[];
 
-  likeCount: number;
+  likeCount?: number;
 
-  comments: Comment[];
+  comments?: CommentDTO[];
 
-  commentCount: number;
+  commentCount?: number;
 
-  createdDate: Date;
+  createdDate?: Date;
 
-  fundingGoal: number;
+  fundingGoal?: number;
 
-  startDate: Date;
+  startDate?: Date;
 
-  duration: number;
+  duration?: number;
 }

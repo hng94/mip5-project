@@ -1,7 +1,7 @@
 export interface AuthDTO {
-  id: string;
-  email: string;
-  token: string;
+  id: string | null;
+  email: string | null;
+  token: string | null;
 }
 
 export interface AuthInput {

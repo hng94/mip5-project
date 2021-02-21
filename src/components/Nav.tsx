@@ -6,6 +6,8 @@ import useOnClickOutside from "../hooks/useClickOutside";
 import useAuth, { AuthProvider, initialAuth } from "../contexts/AuthContext";
 import { AuthActionTypes } from "../reducers/authReducer";
 import { Link } from "react-router-dom";
+import Avatar from "avataaars";
+import DefaultAvatar from "./common/Avatar";
 
 export default function Nav() {
   const { state: auth, dispatch } = useAuth();
@@ -27,24 +29,24 @@ export default function Nav() {
         className="m-4 py-2 px-6 bg-white rounded-md shadow-lg flex items-center justify-between border border-white"
       >
         <div className="space-x-2">
-          <a href="/">
+          <Link to="/">
             <p className="rounded-md py-2 font-medium text-red-400 uppercase">
               <FiHeart className="inline-flex h-5 w-5 mr-2" />
               give
             </p>
-          </a>
+          </Link>
         </div>
         {!auth?.token ? (
           <div>
             <Link to="/register">
-              <a className="rounded-md py-2 px-4 font-medium text-gray-500 hover:text-red-400">
+              <span className="rounded-md py-2 px-4 font-medium text-gray-500 hover:text-red-400">
                 Register
-              </a>
+              </span>
             </Link>
             <Link to="/login">
-              <a className="rounded-md py-2 px-4 font-medium text-gray-500 hover:text-red-400">
+              <span className="rounded-md py-2 px-4 font-medium text-gray-500 hover:text-red-400">
                 Login
-              </a>
+              </span>
             </Link>
           </div>
         ) : (
@@ -52,12 +54,9 @@ export default function Nav() {
             <Menu>
               <div ref={ref}>
                 <Menu.Button className="inline-flex focus:outline-none">
-                  <img
-                    src="../../thumbnail.jpg"
-                    className="w-10 rounded-full"
-                    alt=""
-                    onClick={() => setOpen(!isOpen)}
-                  />
+                  <div className="h-10" onClick={() => setOpen(!isOpen)}>
+                    <DefaultAvatar />
+                  </div>
                 </Menu.Button>
                 <Transition
                   show={isOpen}
@@ -82,40 +81,30 @@ export default function Nav() {
                     <div className="py-1">
                       <Menu.Item>
                         <Link to="/profile">
-                          <a
+                          <p
                             onClick={() => setOpen(!isOpen)}
                             className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
                           >
                             Profile
-                          </a>
+                          </p>
                         </Link>
                       </Menu.Item>
                       <Menu.Item>
-                        <a href="/projects">
-                          <a
+                        <Link to="/projects">
+                          <p
                             onClick={() => setOpen(!isOpen)}
                             className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
                           >
                             Created projects
-                          </a>
-                        </a>
-                      </Menu.Item>
-                      <Menu.Item>
-                        <a href="/favorite-project">
-                          <a
-                            onClick={() => setOpen(!isOpen)}
-                            className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
-                          >
-                            Favorite projects
-                          </a>
-                        </a>
+                          </p>
+                        </Link>
                       </Menu.Item>
                     </div>
 
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <p
                             className={`${
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -124,7 +113,7 @@ export default function Nav() {
                             onClick={handleSignOut}
                           >
                             Sign out
-                          </a>
+                          </p>
                         )}
                       </Menu.Item>
                     </div>

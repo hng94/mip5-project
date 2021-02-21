@@ -5,7 +5,7 @@ import SearchInput from "./SearchInput";
 export default function FilterBar() {
   return (
     <div className="rounded-md flex flex-col space-y-2">
-      <SearchInput />
+      {/* <SearchInput /> */}
       <a
         href="#"
         className="rounded bg-white border-gray-300 border py-2 px-4  text-gray-700 hover:text-red-400"

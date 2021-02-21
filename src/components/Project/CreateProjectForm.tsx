@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import useCategory from "../../contexts/CategoryContext";
 import { CategoryDTO } from "../../DTO/CategoryDTO";
 import { CreateProductInput, ProductDTO } from "../../DTO/ProductDTO";
@@ -16,30 +17,40 @@ const CREATE_PROJECT = gql`
   }
 `;
 
-export default function ProjectForm() {
+export default function CreateProjectForm() {
+  let history = useHistory();
   const [story, setStory] = useState("");
   const { categories } = useCategory();
-  const [selectedCategory, setCategory] = useState<CategoryDTO>(categories[0]);
-
-  const [createProject, { loading, error, data }] = useMutation(CREATE_PROJECT);
+  const [selectedCategory, setCategory] = useState<CategoryDTO>();
+  useEffect(() => {
+    if (categories) setCategory(categories[0]);
+  }, [categories]);
+  const [createProject, { loading, error, data }] = useMutation(
+    CREATE_PROJECT,
+    {
+      onCompleted: ({ createProject }) => {
+        history.push(`/projects/detail/${createProject.id}`);
+      },
+    }
+  );
   const addProject = ({
     title,
     subTitle,
     url,
-    startDate,
-    duration,
+    // startDate,
+    // duration,
     product,
     fundingGoal,
   }) => {
     product.price = parseInt(product.price);
     fundingGoal = parseInt(fundingGoal);
-    duration = parseInt(duration);
+    // duration = parseInt(duration);
     const body = {
       title,
       subTitle,
       url,
-      startDate,
-      duration,
+      // startDate,
+      // duration,
       products: [product],
       fundingGoal,
       story: story,
@@ -139,7 +150,7 @@ export default function ProjectForm() {
                 </p>
                 <QuillEditor story={story} setStory={setStory} />
               </div>
-              <div>
+              {/* <div>
                 <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
                   Campaign
                 </p>
@@ -169,7 +180,7 @@ export default function ProjectForm() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* Product */}
               <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
                 Product
