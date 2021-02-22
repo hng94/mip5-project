@@ -6,7 +6,6 @@ import useOnClickOutside from "../hooks/useClickOutside";
 import useAuth, { AuthProvider, initialAuth } from "../contexts/AuthContext";
 import { AuthActionTypes } from "../reducers/authReducer";
 import { Link } from "react-router-dom";
-import Avatar from "avataaars";
 import DefaultAvatar from "./common/Avatar";
 
 export default function Nav() {

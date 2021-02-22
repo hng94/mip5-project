@@ -1,5 +1,4 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import Avatar from "avataaars";
 import React from "react";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
