@@ -16,6 +16,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { CategoryProvider } from "./contexts/CategoryContext";
 import { setContext } from "@apollo/client/link/context";
 import { AuthDTO } from "./DTO/AuthDTO";
+import ErrorBoundary from "./ErrorBoundary";
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -105,7 +106,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 const httpLink = createHttpLink({
-  uri: "http://18.194.112.57:4000/graphql",
+  uri: "http://18.184.123.88:4000/graphql",
 });
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -116,13 +117,15 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AuthProvider>
-        <CategoryProvider>
-          <App />
-        </CategoryProvider>
-      </AuthProvider>
-    </ApolloProvider>
+    <ErrorBoundary>
+      <ApolloProvider client={client}>
+        <AuthProvider>
+          <CategoryProvider>
+            <App />
+          </CategoryProvider>
+        </AuthProvider>
+      </ApolloProvider>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById("root")
 );
