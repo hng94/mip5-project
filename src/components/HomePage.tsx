@@ -86,13 +86,6 @@ export const HomePage = () => {
                     <ProjectCard project={value} key={index} />
                   ))}
                 </div>
-                {/* <button
-                  disabled={data.projects.length < 1}
-                  onClick={() => setPage(currentPage + 1)}
-                  className="disabled mt-4 text-center text-white rounded bg-red-400 cursor-pointer px-3 py-2 transition duration-300 ease-in-out transform hover:shadow-lg hover:bg-red-500"
-                >
-                  Show more
-                </button> */}
               </>
             )}
             {data.projects.length == 0 && (

@@ -74,35 +74,6 @@ export default function ProjectTabs() {
               <div className="tab-content tab-space ">
                 <div className={openTab === 0 ? "block" : "hidden"} id="link1">
                   <div dangerouslySetInnerHTML={{ __html: story }}></div>
-                  {/* {(auth.email !== creator.email || deletedDate != null) && (
-                    <div dangerouslySetInnerHTML={{ __html: story }}></div>
-                  )} */}
-                  {/* {auth.email === creator.email && deletedDate == null && (
-                    <div>
-                      <QuillEditor
-                        story={story}
-                        setStory={(newValue) => {
-                          dispatchProject({
-                            type: ProjectActionTypes.UPDATE_STORY,
-                            payload: newValue,
-                          });
-                        }}
-                      />
-                      <button
-                        onClick={() => {
-                          updateProject({
-                            variables: {
-                              id,
-                              story,
-                            },
-                          });
-                        }}
-                        className="bg-blue-500 mt-2 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium"
-                      >
-                        Save changes
-                      </button>
-                    </div>
-                  )} */}
                 </div>
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                   <Timeline />

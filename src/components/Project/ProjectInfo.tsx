@@ -89,7 +89,6 @@ export default function ProjectInfo() {
                   {new Date(project.createdDate).toLocaleDateString()}
                 </span>
               </span>
-              {/* <p>832 backers</p> */}
             </div>
             <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200 my-2">
               <div
@@ -109,9 +108,6 @@ export default function ProjectInfo() {
             </div>
           </div>
           <div className="space-x-4 py-4">
-            {/* <button className="bg-red-400 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
-              back it
-            </button> */}
             <span aria-disabled={project.deletedDate != null}>
               <FiThumbsUp
                 onClick={() => likeProject()}
@@ -121,10 +117,6 @@ export default function ProjectInfo() {
               />
               <span>{likeCount} likes</span>
             </span>
-            {/* <span>
-              <span>{project.commentCount}</span>
-              <FiMessageCircle className="text-blue-500 inline-block ml-2 mb-1" />
-            </span> */}
           </div>
         </div>
       </div>

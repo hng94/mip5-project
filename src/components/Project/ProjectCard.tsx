@@ -65,8 +65,6 @@ export default function ProjectCard({ project }: CardProps) {
                   {(project.currentFund * 100) / project.fundingGoal}
                   <span className="text-xs"> % funded</span>
                 </span>
-                {/* <span>Goal</span>
-                <span className="text-green-500">${project.fundingGoal}</span> */}
               </div>
             </div>
           </div>

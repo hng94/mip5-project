@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./styles/tailwind.css";
 
 import App from "./components/App";
 // import reportWebVitals from "./reportWebVitals";
@@ -105,7 +105,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: "http://18.194.112.57:4000/graphql",
 });
 const client = new ApolloClient({
   link: authLink.concat(httpLink),

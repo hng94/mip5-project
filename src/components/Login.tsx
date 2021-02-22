@@ -100,13 +100,6 @@ const Login: React.FC = () => {
           </button>
         </form>
         <div className="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-          {/* <Link to="/forgot-password">
-            <span className="flex-2 underline">Forgot password?</span>
-          </Link> */}
-
-          {/* <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
-            or
-          </p> */}
           <Link to="/register">
             <span className="flex-2 underline">Create an Account</span>
           </Link>

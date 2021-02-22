@@ -230,9 +230,7 @@ const Register = () => {
                 name="agree"
                 type="checkbox"
                 className="h-5 w-5 text-blue-500 rounded focus:outline-none border-gray-300"
-                // checked={agree}
                 ref={registerForm({ required: true })}
-                // onChange={() => setAgree(!agree)}
               />
               <span className="ml-2">
                 I agree with

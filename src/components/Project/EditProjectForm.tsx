@@ -158,45 +158,12 @@ export default function EditProjectForm() {
                     />
                   </div>
                 </div>
-                {/* Story */}
                 <div>
                   <p className="text-2xl text-red-400 mb-2 pb-2 border-b-2 border-red-400">
                     Story
                   </p>
                   <QuillEditor story={story} setStory={setStory} />
                 </div>
-                {/* <div>
-                  <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
-                    Campaign
-                  </p>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="mt-2">
-                      <label>Start date</label>
-                      <input
-                        name="startDate"
-                        ref={register({ required: true })}
-                        type="date"
-                        className="form-input mt-1 block w-full rounded border-gray-300"
-                        id="startDate"
-                      />
-                    </div>
-                    <div className="mt-2">
-                      <label>Duration (days)</label>
-                      <input
-                        name="duration"
-                        ref={register({ required: true })}
-                        className="form-input mt-1 block w-full rounded border-gray-300"
-                        type="number"
-                        min={1}
-                        max={365}
-                        defaultValue={1}
-                        step={1}
-                        id="duration"
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* Product */}
                 <p className="text-2xl text-red-400 pb-2 border-b-2 border-red-400">
                   Product
                 </p>
