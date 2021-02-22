@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FiHeart, FiThumbsUp } from "react-icons/fi";
 import useAuth from "../../contexts/AuthContext";
 import { CommentDTO } from "../../DTO/CommentDTO";
+import DefaultAvatar from "../common/Avatar";
 
 interface CommentCardProps {
   comment: CommentDTO;
@@ -55,10 +56,7 @@ export default function CommentCard({ comment }: CommentCardProps) {
         <div className="bg-white dark:bg-gray-800 dark:border-gray-800 p-4 rounded-lg border w-full">
           <div className="flex justify-between">
             <div className="flex items-center">
-              <img
-                className="h-11 w-11 rounded-full"
-                src="https://pbs.twimg.com/profile_images/1287562748562309122/4RLk5A_U_x96.jpg"
-              />
+              <DefaultAvatar />
               <div className="ml-1.5 text-sm leading-tight">
                 <span className="text-black dark:text-white font-bold block ">
                   {state.creator.firstName + " " + state.creator.lastName}

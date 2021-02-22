@@ -1,11 +1,12 @@
 import { gql, useMutation } from "@apollo/client";
-import { Dispatch, useEffect } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import useAuth from "../../contexts/AuthContext";
 import useProject, { ProjectDetailParams } from "../../contexts/ProjectContext";
 import { CommentDTO } from "../../DTO/CommentDTO";
 import { ProjectActionTypes } from "../../reducers/ProjectReducer";
+import DefaultAvatar from "../common/Avatar";
 
 const CREATE_COMMENT = gql`
   mutation CreateComment($projectId: ID!, $content: String!) {
@@ -64,10 +65,7 @@ export default function CommentForm() {
       <div className="bg-white dark:bg-gray-800 glass dark:border-gray-800 p-4 rounded-xl border w-full">
         <div className="flex justify-between">
           <div className="flex items-center">
-            <img
-              className="h-11 w-11 rounded-full"
-              src="https://pbs.twimg.com/profile_images/1287562748562309122/4RLk5A_U_x96.jpg"
-            />
+            <DefaultAvatar />
             <div className="ml-1.5 text-sm leading-tight">
               <span className="text-black dark:text-white font-bold block ">
                 {auth.email}
