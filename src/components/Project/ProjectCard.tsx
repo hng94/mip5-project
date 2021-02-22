@@ -48,21 +48,25 @@ export default function ProjectCard({ project }: CardProps) {
                   {new Date(project.createdDate).toLocaleDateString()}
                 </span>
               </div>
-              {/* <div className="">
+              <div className="">
                 <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200">
                   <div
-                    style={{ width: "30%" }}
+                    style={{
+                      width: `${
+                        (project.currentFund * 100) / project.fundingGoal
+                      }%`,
+                    }}
                     className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
                   ></div>
                 </div>
-              </div> */}
-              <div className="flex flex-row space-x-2 text-xl">
-                {/* <span className="text-gray-500">
-                  {(props.currentFund * 100) / project.fundingGoal}
-                  <span className="text-xs">%</span>
-                </span> */}
-                <span>Goal</span>
-                <span className="text-green-500">${project.fundingGoal}</span>
+              </div>
+              <div className="flex flex-row space-x-2">
+                <span className="text-green-700">
+                  {(project.currentFund * 100) / project.fundingGoal}
+                  <span className="text-xs"> % funded</span>
+                </span>
+                {/* <span>Goal</span>
+                <span className="text-green-500">${project.fundingGoal}</span> */}
               </div>
             </div>
           </div>

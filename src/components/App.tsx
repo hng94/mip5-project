@@ -13,6 +13,7 @@ import CreateProjectForm from "./Project/CreateProjectForm";
 import ProjectDetail from "./Project/ProjectDetail";
 import { ProjectProvider } from "../contexts/ProjectContext";
 import EditProjectForm from "./Project/EditProjectForm";
+import MyOrders from "./MyOrders";
 
 export default function App() {
   return (
@@ -49,6 +50,9 @@ export default function App() {
                 <EditProjectForm />
               </ProjectProvider>
             </ProtectedRoute>
+            <Route path="/orders">
+              <MyOrders />
+            </Route>
           </Switch>
         </div>
       </Router>

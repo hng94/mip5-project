@@ -12,9 +12,7 @@ import ProductCard from "../Product/ProductCard";
 
 const UPDATE_PROJECT = gql`
   mutation updateProject($data: CreateProjectInput!, $id: String!) {
-    updateProject(data: $data, id: $id) {
-      id
-    }
+    updateProject(data: $data, id: $id)
   }
 `;
 
@@ -29,7 +27,7 @@ export default function EditProjectForm() {
     UPDATE_PROJECT,
     {
       onCompleted: ({ updateProject }) => {
-        history.push(`/projects/detail/${updateProject.id}`);
+        history.push(`/projects/detail/${updateProject}`);
       },
     }
   );

@@ -82,6 +82,11 @@ const typeDefs = gql`
     url: String
   }
 
+  extend type CreateOrderInput {
+    productId: ID
+    quantity: Number
+  }
+
   extend type Category {
     id: String
     name: String

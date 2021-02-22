@@ -16,7 +16,7 @@ const ADD_TIMELINE = gql`
     }
   }
 `;
-export default function Timeline({ timelines }: TimelineProps) {
+export default function Timeline() {
   const { register, errors, handleSubmit, reset } = useForm();
   const { state: project, dispatch: dispatchProject } = useProject();
   const { state: auth, dispatch: dispatchAuth } = useAuth();
@@ -41,7 +41,7 @@ export default function Timeline({ timelines }: TimelineProps) {
   };
   return (
     <>
-      {auth.email === project.creator.email && (
+      {auth.email === project.creator.email && project.deletedDate == null && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             ref={register({ required: true })}
@@ -60,7 +60,7 @@ export default function Timeline({ timelines }: TimelineProps) {
       )}
       <div className="flex justify-start">
         <ol className="p-4">
-          {timelines.map((timeline, i) => (
+          {project.timelines.map((timeline, i) => (
             <li
               className="feed-item relative pb-5 pl-6 border-l-2 border-red-300 last:border-transparent"
               key={`timeline${i}`}

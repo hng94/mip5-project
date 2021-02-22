@@ -25,7 +25,7 @@ const UPDATE_PROJECT = gql`
 export default function ProjectTabs() {
   const { state: auth, dispatch: dispatchAuth } = useAuth();
   const {
-    state: { id, story, timelines, comments, creator },
+    state: { id, story, timelines, comments, creator, deletedDate },
     dispatch: dispatchProject,
   } = useProject();
   const [updateProject, { loading, data }] = useMutation(UPDATE_PROJECT, {
@@ -73,10 +73,11 @@ export default function ProjectTabs() {
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space ">
                 <div className={openTab === 0 ? "block" : "hidden"} id="link1">
-                  {auth.email !== creator.email && (
+                  <div dangerouslySetInnerHTML={{ __html: story }}></div>
+                  {/* {(auth.email !== creator.email || deletedDate != null) && (
                     <div dangerouslySetInnerHTML={{ __html: story }}></div>
-                  )}
-                  {auth.email === creator.email && (
+                  )} */}
+                  {/* {auth.email === creator.email && deletedDate == null && (
                     <div>
                       <QuillEditor
                         story={story}
@@ -101,10 +102,10 @@ export default function ProjectTabs() {
                         Save changes
                       </button>
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                  <Timeline timelines={timelines} />
+                  <Timeline />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link1">
                   <Comments />

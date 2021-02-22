@@ -12,6 +12,8 @@ export interface OrderDTO {
   quantity: number;
 
   status: OrderStatus;
+
+  createdDate: Date;
 }
 
 export interface CreateOrderInput {

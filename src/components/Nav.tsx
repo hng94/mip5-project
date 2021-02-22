@@ -90,6 +90,16 @@ export default function Nav() {
                         </Link>
                       </Menu.Item>
                       <Menu.Item>
+                        <Link to="/orders">
+                          <p
+                            onClick={() => setOpen(!isOpen)}
+                            className="hover:bg-gray-100 hover:text-red-400 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none"
+                          >
+                            My orders
+                          </p>
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item>
                         <Link to="/projects">
                           <p
                             onClick={() => setOpen(!isOpen)}

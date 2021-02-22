@@ -23,7 +23,7 @@ function sortByCreatedDate(a: CommentDTO, b: CommentDTO) {
 export default function Comments() {
   const { state: auth, dispatch } = useAuth();
   const {
-    state: { comments },
+    state: { comments, deletedDate },
     dispatch: dispatchProject,
   } = useProject();
   const [state, setState] = useState(comments.sort(sortByCreatedDate));
@@ -40,7 +40,10 @@ export default function Comments() {
           <FiMessageCircle className="text-blue-500 inline-block mr-2 mb-1" />
           <span>{state.length} comments</span>
         </div>
-        <CommentForm />
+        {auth.token && deletedDate == null && <CommentForm />}
+        {deletedDate != null && (
+          <pre className="text-red-500">Comment feature is closed</pre>
+        )}
         {state.map((comment, index) => (
           <CommentCard comment={comment} key={comment.id} />
         ))}

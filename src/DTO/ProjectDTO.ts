@@ -36,9 +36,22 @@ export interface ProjectDTO {
 
   createdDate?: Date;
 
+  deletedDate?: Date;
+
   fundingGoal?: number;
+
+  currentFund?: number;
 
   startDate?: Date;
 
   duration?: number;
+}
+
+export function getCurrentFund(project: ProjectDTO) {
+  const price = project.products?.[0].price || 0;
+  const quantity = project.products?.[0].orders
+    .map((o) => o.quantity)
+    .reduce((q, total) => q + total, 0);
+  const currentFund = price * quantity;
+  return currentFund;
 }

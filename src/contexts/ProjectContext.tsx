@@ -45,7 +45,9 @@ export const GET_PROJECT = gql`
         email
       }
       fundingGoal
+      currentFund
       createdDate
+      deletedDate
       likeCount
       likes {
         creator {
@@ -58,6 +60,10 @@ export const GET_PROJECT = gql`
         price
         id
         description
+        orders {
+          id
+          quantity
+        }
       }
       timelines {
         content

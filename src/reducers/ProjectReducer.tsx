@@ -1,5 +1,6 @@
 import { CommentDTO } from "../DTO/CommentDTO";
 import { LikeDTO } from "../DTO/LikeDTO";
+import { OrderDTO } from "../DTO/OrderDTO";
 import { ProjectDTO } from "../DTO/ProjectDTO";
 import { TimelineDTO } from "../DTO/TimelineDTO";
 
@@ -10,11 +11,19 @@ export enum ProjectActionTypes {
   UPDATE_STORY = "UPDATE_STORY",
   ADD_TIMELINE = "ADD_TIMELINE",
   LOAD_PROJECT = "LOAD_PROJECT",
+  CREATE_ORDER = "CREATE_ORDER",
 }
 
 export type ProjectAction = {
   type: ProjectActionTypes;
-  payload: CommentDTO | LikeDTO | string | TimelineDTO | any | ProjectDTO;
+  payload:
+    | CommentDTO
+    | LikeDTO
+    | string
+    | TimelineDTO
+    | any
+    | ProjectDTO
+    | OrderDTO;
 };
 
 export const ProjectReducer = (state: ProjectDTO, action: ProjectAction) => {

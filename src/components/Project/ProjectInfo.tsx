@@ -61,6 +61,11 @@ export default function ProjectInfo() {
             <div>
               <div className="text-red-400">{project.category.name}</div>
               <span className="text-2xl font-semibold">{project.title}</span>
+              {project.deletedDate != null && (
+                <span className="ml-2 text-2xl text-red-500 font-bold">
+                  [CLOSED]
+                </span>
+              )}
             </div>
             <div className="font-normal text-md text-gray-700" id="content">
               {project.subTitle}
@@ -86,27 +91,28 @@ export default function ProjectInfo() {
               </span>
               {/* <p>832 backers</p> */}
             </div>
-            {/* <div className="pt-1">
-              <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200">
-                <div
-                  style={{ width: "30%" }}
-                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
-                ></div>
-              </div>
-            </div> */}
-            <div className="flex flex-row space-x-2">
-              <span className="text-2xl text-gray-500">Goal</span>
-              <span className="text-2xl text-green-500">
-                {project.fundingGoal} €
-              </span>
-              {/* <div className="text-gray-500">30%</div> */}
+            <div className="overflow-hidden h-2 text-xs flex rounded bg-green-200 my-2">
+              <div
+                style={{
+                  width: `${
+                    (project.currentFund * 100) / project.fundingGoal
+                  }%`,
+                }}
+                className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+              ></div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-4xl text-green-700">{project.currentFund} €</p>
+              <p className="text-gray-500">
+                pledged of €{project.fundingGoal} goal
+              </p>
             </div>
           </div>
           <div className="space-x-4 py-4">
             {/* <button className="bg-red-400 text-white uppercase py-2 px-6 shadow-lg rounded text-sm font-medium">
               back it
             </button> */}
-            <span>
+            <span aria-disabled={project.deletedDate != null}>
               <FiThumbsUp
                 onClick={() => likeProject()}
                 className={`text-gray-500 cursor-pointer mb-1 mr-1 inline-flex hover:text-red-500 ${

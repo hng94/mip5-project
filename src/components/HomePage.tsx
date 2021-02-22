@@ -35,6 +35,7 @@ const GET_PROJECTS = gql`
         lastName
       }
       fundingGoal
+      currentFund
       createdDate
     }
   }
