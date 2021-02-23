@@ -27,7 +27,12 @@ const Login: React.FC = () => {
   const [
     sendLogin,
     { loading, error, data: loginResult },
-  ] = useLazyQuery<ILoginData>(LOGIN, { errorPolicy: "all" });
+  ] = useLazyQuery<ILoginData>(LOGIN, {
+    errorPolicy: "all",
+    onCompleted: (data) => {
+      history.push("/");
+    },
+  });
 
   const onSubmit = (input: AuthInput) => {
     sendLogin({

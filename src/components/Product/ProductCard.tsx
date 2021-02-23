@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiCheckCircle } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
+import useAuth from "../../contexts/AuthContext";
 import { OrderDTO } from "../../DTO/OrderDTO";
 import { ProductDTO } from "../../DTO/ProductDTO";
 export type IProduct = {
@@ -37,6 +38,7 @@ const CREATE_ORDER = gql`
 `;
 export default function ProductCard({ product }: ProductCardProps) {
   const history = useHistory();
+  const { state: auth, dispatch: dispatchAuth } = useAuth();
   const [state, setState] = useState(product);
   const { register, handleSubmit, errors } = useForm<IOrderForm>();
   const [createOrder, { loading, data }] = useMutation(CREATE_ORDER, {
@@ -67,23 +69,26 @@ export default function ProductCard({ product }: ProductCardProps) {
               {state.orders?.length} orders
             </p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="number"
-              name="quantity"
-              className="form-input mt-1 block w-full rounded border-gray-300"
-              defaultValue={1}
-              max={99}
-              min={1}
-              ref={register({ required: true, min: 1, max: 99 })}
-            />
-            <button
-              type="submit"
-              className="bg-red-400 mt-2 text-white uppercase py-2 px-6 hover:shadow-lg hover:bg-red-500 rounded text-sm font-medium focus:outline-none"
-            >
-              Order
-            </button>
-          </form>
+          {auth?.token && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                type="number"
+                name="quantity"
+                className="form-input mt-1 block w-full rounded border-gray-300"
+                defaultValue={1}
+                max={99}
+                min={1}
+                ref={register({ required: true, min: 1, max: 99 })}
+              />
+              <button
+                type="submit"
+                className="bg-red-400 mt-2 text-white uppercase py-2 px-6 hover:shadow-lg hover:bg-red-500 rounded text-sm font-medium focus:outline-none"
+              >
+                Order
+              </button>
+            </form>
+          )}
+          {!auth?.token && <pre className="text-red-500">Login to order</pre>}
         </div>
         <hr />
         <div className="p-4 space-y-2">
